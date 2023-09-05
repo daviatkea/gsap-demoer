@@ -1,0 +1,92 @@
+---
+import "../styles/global.css";
+
+// import { getCollection } from "astro:content";
+// const blogEntries = await getCollection("blog");
+
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Blockquote from "../components/Blockquote.astro";
+
+// import { texts } from "../data/pierre.json";
+---
+
+<Base>
+  <h1>Hello</h1>
+  <Hero />
+
+  <!-- {
+    texts.map((text) => (
+      <Section title={text.title} imgName={text.image}>
+        <Fragment set:html={text.content} />
+      </Section>
+    ))
+  } -->
+
+  <Section title="This is section 1" imgName="hero.jpg">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+      asperiores voluptatum at odit laboriosam facilis fuga porro excepturi
+      molestiae tenetur!
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+      asperiores voluptatum at odit laboriosam facilis fuga porro excepturi
+      molestiae tenetur!
+    </p>
+  </Section>
+
+  <Section title="This is section 2" imgName="wintersoldier.png">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+      asperiores voluptatum at odit laboriosam facilis fuga porro excepturi
+      molestiae tenetur!
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+      asperiores voluptatum at odit laboriosam facilis fuga porro excepturi
+      molestiae tenetur!
+    </p>
+    <Blockquote>Lorem ipsum dolor sit amet.</Blockquote>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+      asperiores voluptatum at odit laboriosam facilis fuga porro excepturi
+      molestiae tenetur!
+    </p>
+  </Section>
+
+  <!-- {
+    posts.map((post) => (
+      <post.Content components={{ blockquote: Blockquote }} />
+    ))
+  } -->
+
+  <ul>
+    <!-- {
+        blogEntries.map((entry) => (
+          <li>
+            <a href={entry.slug}>
+              {entry.data.title} — {entry.data.test}
+            </a>
+          </li>
+        ))
+      } -->
+    <!-- {
+    posts.map((post) => (
+      <article>
+        <h2>{post.frontmatter.title}</h2>
+        <a href={post.url}>Read more</a>
+      </article>
+    ))
+  } -->
+  </ul>
+</Base>
+<style>
+  h1 {
+    &::before {
+      content: "Hello ";
+      background: var(--orange-8);
+    }
+  }
+</style>

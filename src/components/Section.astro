@@ -1,0 +1,127 @@
+---
+const { title, imgName } = Astro.props;
+
+import { Image } from "astro:assets";
+
+const images = import.meta.glob("../assets/imgs/*.{jpg,jpeg,png}");
+let imgSrc = null;
+for (const path in images) {
+  if (path === `../assets/imgs/${imgName}`) {
+    const func: Function = images[path];
+    imgSrc = (await func()).default;
+  }
+}
+
+// imgSrc = (await images[`../assets/imgs/${imgName}`]()).default;
+---
+
+<section>
+  <header>
+    <h2>{title}</h2>
+    <Image
+      src={imgSrc}
+      width="1000"
+      height="667"
+      alt={title}
+      class="section-image"
+    />
+  </header>
+  <div class="prose">
+    <slot />
+  </div>
+</section>
+
+<style>
+  section {
+    display: inherit;
+    grid-template-columns: inherit;
+    grid-column: 1 / -1;
+
+    row-gap: var(--size-10);
+
+    > * {
+      grid-column: 2;
+    }
+  }
+
+  header {
+    display: grid;
+    grid-column: 1 / -1;
+    background: #fe095d;
+    place-items: center;
+    clip-path: polygon(0 max(10%, var(--size-11)), 100% 0, 100% 100%, 0 100%);
+
+    > * {
+      grid-area: 1 / 1;
+    }
+
+    > h2 {
+      z-index: 1;
+      font-size: var(--size-fluid-6);
+    }
+
+    > img {
+      --mask: radial-gradient(farthest-side at 50% 50%, #000, #0000);
+      -webkit-mask: var(--mask);
+      mask: var(--mask);
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  const sectionHeaders = document.querySelectorAll("header");
+
+  const paragraphs = document.querySelectorAll(".prose p");
+
+  gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+    sectionHeaders.forEach((section, i) => {
+      const direction = i % 2 === 1 ? -1 : 1; // En variable, som skifter mellem værdien -1 og 1 baseret på elementets index position
+
+      const img = section.querySelector("img");
+
+      const tl = gsap.timeline({
+        defaults: {
+          duration: 1,
+          ease: "power4.out",
+        },
+      });
+
+      tl.to(img, {
+        scale: 1.2,
+      }).to(
+        img,
+        {
+          xPercent: 50 * direction,
+        },
+        "-=.5"
+      );
+
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: section,
+        start: "top 25%",
+        end: "+=500px",
+        toggleActions: "play none none reverse",
+      });
+    });
+
+    paragraphs.forEach((paragraph) => {
+      gsap.from(paragraph, {
+        y: 100,
+        opacity: 0,
+        ease: "power4.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: paragraph,
+          start: "top bottom-=100px",
+          end: "+=300px",
+          scrub: true,
+          markers: true,
+        },
+      });
+    });
+  });
+</script>

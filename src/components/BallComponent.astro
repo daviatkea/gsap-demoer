@@ -1,0 +1,157 @@
+---
+const { ball } = Astro.props;
+---
+
+<section>
+  <div class={ball}></div>
+  {
+    ball === "ball-3" && (
+      <>
+        <div class={ball} />
+        <div class={ball} />
+      </>
+    )
+  }
+</section>
+
+<style>
+  section {
+    height: 100vh;
+    border: 2px solid #000;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  .ball-1,
+  .ball-2,
+  .ball-3,
+  .ball-4,
+  .ball-5 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+
+  .ball-1 {
+    background: red;
+  }
+  .ball-2 {
+    background: lightseagreen;
+  }
+  .ball-3 {
+    background: var(--blue-10);
+  }
+  .ball-4 {
+    background: var(--purple-4);
+  }
+  .ball-5 {
+    background: var(--green-5);
+  }
+
+  .active {
+    outline: 4px dashed;
+    outline-offset: 4px;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+    // Bold 1
+    gsap.to(".ball-1", {
+      x: 500,
+      scale: 2,
+      duration: 5,
+      scrollTrigger: {
+        trigger: ".ball-1",
+        start: "start center",
+        end: "bottom center",
+        // markers: true,
+      },
+    });
+    // Bold 1 END
+
+    // Bold 2
+    gsap.from(".ball-2", {
+      x: 500,
+      scale: 2,
+      opacity: 0.5,
+      ease: "elastic.out(1, 0.3)",
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: ".ball-2",
+        start: "start 50%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+        // markers: true,
+      },
+    });
+    // Bold 2 END
+
+    // Bold 3
+    gsap.from(".ball-3", {
+      xPercent: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".ball-3",
+        start: "start 50%",
+        end: "bottom 50%",
+        scrub: true,
+        pin: document.querySelector(".ball-3").parentElement,
+        // markers: true,
+      },
+    });
+    // Bold 3 END
+
+    // Bold 4
+    ScrollTrigger.create({
+      trigger: ".ball-4",
+      start: "top center",
+      end: "top 100px",
+      toggleClass: "active",
+      // once: true,
+      // markers: true,
+    });
+    // Bold 4 END
+
+    // Bold 5
+    const tl = gsap.timeline({
+      defaults: {
+        duration: 1,
+        ease: "power4.out",
+      },
+    });
+
+    tl.to(".ball-5", {
+      scale: 2,
+    })
+      .to(".ball-5", {
+        scale: 1,
+      })
+      .to(
+        ".ball-5",
+        {
+          x: window.innerWidth,
+          xPercent: -100,
+        },
+        "-=.5"
+      );
+
+    ScrollTrigger.create({
+      animation: tl,
+      trigger: document.querySelector(".ball-5").parentElement,
+      start: "top top",
+      scrub: true,
+      pin: true,
+      // markers: true,
+    });
+    // Bold 5 END
+  });
+</script>

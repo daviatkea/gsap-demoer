@@ -1,0 +1,32 @@
+{
+  "texts": [
+    {
+      "title": "Intro",
+      "image": null,
+      "content": [
+        "<p>Pierre Falcke. Du ved formentligt ikke hvem han er. Men indtil for kort tid siden, så du hans værker et par gange om dagen, hver dag, året rundt. Pierre Falcke var en af verdens bedst sælgende stock-fotografer, og han solgte over 2 millioner fotos om året. Men Pierre kunne ikke drømme om at bruge sine egne fotos - faktisk kan han ikke fordrage sit eget arbejde.</p>"
+      ]
+    },
+    {
+      "title": "Hurtige facts om Pierres fotos",
+      "image": "hero.jpg",
+      "content": [
+        "<ul>",
+        "<li>Pierre sælger 2 millioner fotos om året</li>",
+        "<li>Det svarer til én fotolicens hvert 16. sekund</li>",
+        "</ul>",
+        "<p>Du ser hans fotos ca. 2 gange om dagen</p>"
+      ]
+    },
+    {
+      "title": "Infoboks om stock-fotos",
+      "image": null,
+      "content": [
+        "<p>Hvad er stock-fotos?</p>",
+        "<p>Stock-fotos er billeder, der kan købes fra et foto-website. De bruges af aviser, til markedsføring og som indhold på websites. En licens til at bruge et foto koster typisk mellem 10 og 100 kroner, alt afhængig af hvad de skal bruges til.</p>",
+        "<p>Stock-fotos bliver ofte kritiseret for at være uden sjæl - det er de der billeder af en læge i hvid kittel med stetoskop om halsen på en meget hvid baggrund eller en meget glad dame fra virksomhedens salgs- eller supportafdeling.</p>",
+        "<p>Stock-fotos har eksisteret i mange år. Før branchen blev digital, tilbød stock-foto virksomhederne billedmapper, der kunne bestilles fra. Men stock-foto branchen var én af de tidlige til at blive fuldt digitaliseret.</p>"
+      ]
+    }
+  ]
+}

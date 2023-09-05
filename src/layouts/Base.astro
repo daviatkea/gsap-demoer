@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <header>Header</header>
+    <main>
+      <slot />
+    </main>
+    <footer>Footer</footer>
+  </body>
+</html>
+
+<style>
+  main {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, var(--size-content-3)) 1fr;
+    column-gap: 1rem;
+    row-gap: var(--size-12);
+
+    /* > :global(*) {
+      grid-column: 2;
+    } */
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+</script>

@@ -1,0 +1,66 @@
+---
+import BallComponent from "../components/BallComponent.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Astro</title>
+  </head>
+  <body>
+    <main>
+      <h1>GSAP</h1>
+      <article class="ball-demo">
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>In dolores totam repudiandae at.</p>
+        <p>Ad tenetur temporibus ratione cumque?</p>
+        <p>Labore, debitis at. Reprehenderit, odit.</p>
+      </article>
+      <BallComponent ball="ball-1" />
+      <BallComponent ball="ball-2" />
+      <BallComponent ball="ball-3" />
+      <BallComponent ball="ball-4" />
+      <BallComponent ball="ball-5" />
+    </main>
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  article {
+    margin-block: 6rem;
+  }
+  main {
+    margin-block: 100vh;
+    padding: 2rem;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tekstparagraffer = document.querySelectorAll(".ball-demo > p");
+
+  tekstparagraffer.forEach((p) => {
+    gsap.from(p, {
+      y: 100,
+      opacity: 0,
+      ease: "power4.out",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: p,
+        start: "top bottom-=100px",
+        end: "+=300px",
+        scrub: true,
+        // markers: true,
+      },
+    });
+  });
+</script>
